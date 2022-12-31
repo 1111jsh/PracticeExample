@@ -2,32 +2,35 @@ package main.java;
 
 public class CarTest {
     public static void main(String[] args) {
-        Car tesla = new Car("Model 3", "빨강"); // 객체생성
 
-        System.out.println("내 차의 모델은 " + tesla.model + "이고" + "색은" + tesla.color + "입니다."); // 필드 호출
-        tesla.power();
-        tesla.accelerate();
-        tesla.stop();
+        Car car1 = new Car();
+        Car car2 = new Car();
+
+        car1.cv = "클래스변수2"; // 모든 객체에 영향
+        System.out.println(car1.cv);
+        System.out.println(car2.cv);
+        System.out.println(Car.cv);
+
+        car1.iv = "인스턴스 변수2";
+        System.out.println(car1.iv);
+        System.out.println(car2.iv);
+//        System.out.println(Car.cv);
+//        System.out.println(Car.iv);
     }
 }
 
 class Car {
-    public String model; // 필드선언
-    public String color;
+    public String iv = "인스턴스 변수";
+    public static String cv = "클래스변수";
 
-    public Car(String model, String color) { // 인스턴스 초기화를 위한 생성자 함수
-            this.model = model;
-            this.color = color;
+    public static void classmethod() {
+//        System.out.println(iv); // classmethod -> 클래스변수 접근가능, 인스턴스변수 접근 불가
+        System.out.println(cv);
     }
 
-    void power() { // 메서드 선언
-        System.out.println("시동을 걸었습니다.");
-    }
-
-    void accelerate() {
-        System.out.println("더 빠르게!");
-    }
-    void stop() {
-        System.out.println("멈춰!!");
+    public void instancemethod() {
+        System.out.println(iv);
+        System.out.println(cv);
     }
 }
+
